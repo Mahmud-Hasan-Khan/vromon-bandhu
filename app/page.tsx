@@ -1,8 +1,9 @@
 import OfferNoticeSlider from "@/components/home/offerSection/offerSlider";
+import { getLightweightOffers } from "@/lib/offer.service";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const offers = await getOffers();
+  const offers = await getLightweightOffers();
   return (
     <div className="relative">
       <main>

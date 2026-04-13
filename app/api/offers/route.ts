@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getOffers, createOffer } from "@/lib/offers";
+import { getOffers, createOffer } from "@/lib/offer.service";
 
 export async function GET() {
   const offers = await getOffers();

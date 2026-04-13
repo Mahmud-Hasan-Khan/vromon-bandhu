@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useCallback, useEffect, useState, useRef } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import OfferCard from "./offerCard";
-import { OfferType } from "@/types/offer";
+import { IOfferLight } from "@/types/offer.types";
 
-const OfferNoticeSlider = ({ cards }: { cards: OfferType[] }) => {
+const OfferNoticeSlider = ({ cards }: { cards: IOfferLight[] }) => {
     const router = useRouter();
     const [selectedIndex, setSelectedIndex] = useState(0);
 

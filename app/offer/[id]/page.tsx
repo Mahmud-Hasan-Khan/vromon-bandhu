@@ -1,7 +1,9 @@
-import { getOfferById } from "@/lib/offers";
+import { getOfferById } from "@/lib/offer.service";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
+export const dynamic = "force-dynamic";
 
 type Props = {
     params: Promise<{
@@ -10,7 +12,11 @@ type Props = {
 };
 
 export default async function OfferDetail({ params }: Props) {
-    const { id } = await params;
+    const resolvedParams = await params;
+    const id = resolvedParams.id;
+    
+    if (!id) return notFound();
+
     const card = await getOfferById(id);
     if (!card) return notFound();
 

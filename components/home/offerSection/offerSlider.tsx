@@ -13,7 +13,7 @@ const OfferNoticeSlider = ({ cards }: { cards: IOfferLight[] }) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     const autoplay = useRef(
-        Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true })
+        Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true })
     );
 
     const [emblaRef, emblaApi] = useEmblaCarousel(

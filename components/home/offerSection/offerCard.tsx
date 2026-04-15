@@ -129,7 +129,7 @@ const OfferCard = (
                     {/* Title */}
                     <h3
                         className={`
-                            text-white text-lg font-bold mb-5 transition-all duration-500 delay-100
+                            text-white font-bangla text-lg font-semibold mb-5 transition-all duration-500 delay-100
                             ${active
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-5"

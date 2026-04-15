@@ -3,7 +3,6 @@ import {
   Poppins,
   Inter,
   Noto_Sans_Bengali,
-  Hind_Siliguri,
 } from "next/font/google";
 import "./globals.css";
 
@@ -26,15 +25,10 @@ const notoBangla = Noto_Sans_Bengali({
   variable: "--font-bangla",
 });
 
-const hind = Hind_Siliguri({
-  subsets: ["bengali"],
-  weight: ["400", "500", "600"],
-  variable: "--font-hind",
-});
 
 export const metadata: Metadata = {
   title: "Vromon Bandhu",
-  description: "Travel Agency Web App",
+  description: "Travel Agency",
 };
 
 export default function RootLayout({
@@ -49,7 +43,6 @@ export default function RootLayout({
         ${poppins.variable}
         ${inter.variable}
         ${notoBangla.variable}
-        ${hind.variable}
         h-full antialiased
       `}
     >

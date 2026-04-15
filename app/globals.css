@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@theme {
+  --font-heading: var(--font-poppins);
+  --font-sans: var(--font-inter);
+  --font-bangla: var(--font-bangla);
+}

@@ -6,6 +6,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import OfferCard from "./offerCard";
 import { IOfferLight } from "@/types/offer.types";
+import SectionTitle from "@/components/Section Title/SectionTitle";
 
 const OfferNoticeSlider = ({ cards }: { cards: IOfferLight[] }) => {
     const router = useRouter();
@@ -51,7 +52,12 @@ const OfferNoticeSlider = ({ cards }: { cards: IOfferLight[] }) => {
     }
 
     return (
-        <div className="relative w-full bg-white rounded-md py-4">
+        <div className="relative w-full rounded-md py-4">
+            <SectionTitle
+                heading="Exclusive Offers"
+                subheading="Check out our latest deals and discounts"
+            />
+
             <div ref={emblaRef} className="overflow-hidden">
                 <div className="flex">
                     {cards.map((card, index) => (
@@ -77,8 +83,8 @@ const OfferNoticeSlider = ({ cards }: { cards: IOfferLight[] }) => {
                             key={index}
                             onClick={() => emblaApi?.scrollTo(index)}
                             className={`h-2 rounded-full transition-all ${selectedIndex === index
-                                    ? "w-6 bg-blue-500"
-                                    : "w-2 bg-gray-300"
+                                ? "w-6 bg-blue-500"
+                                : "w-2 bg-gray-300"
                                 }`}
                         />
                     ))}

@@ -93,7 +93,7 @@ const OfferCard = (
             tabIndex={0}
             aria-label={`View details for ${card.title}`}
             onMouseLeave={() => setActive(false)} // মাউস সরিয়ে নিলে রিসেট হবে
-            className="relative cursor-pointer bg-white rounded-lg shadow-md overflow-hidden hover:scale-[1.05] transition-transform group border-t-2 border-t-blue-500"
+            className="relative cursor-pointer bg-white rounded-lg shadow-md shadow-black/40 overflow-hidden hover:scale-[1.05] transition-transform group border-t-2 border-t-blue-500"
         >
             {/* Image */}
             <div className="relative w-full h-44 rounded-lg overflow-hidden bg-gray-200">

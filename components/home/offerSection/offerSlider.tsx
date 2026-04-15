@@ -6,7 +6,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import OfferCard from "./offerCard";
 import { IOfferLight } from "@/types/offer.types";
-import SectionTitle from "@/components/Section Title/SectionTitle";
+import SectionTitle from "@/components/sectionTitle/SectionTitle";
 
 const OfferNoticeSlider = ({ cards }: { cards: IOfferLight[] }) => {
     const router = useRouter();

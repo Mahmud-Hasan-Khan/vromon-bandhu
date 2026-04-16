@@ -22,8 +22,8 @@ const AirlinesPartnerMarqueeImageCard = ({
                         <Image
                             src={logo.logo}
                             alt={logo.name}
-                            width={40}
-                            height={40}
+                            width={35}
+                            height={35}
                             className="object-contain"
                             priority={index < 5} // Prioritize loading the first few images
                         />

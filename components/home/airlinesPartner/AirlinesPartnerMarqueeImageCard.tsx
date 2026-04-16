@@ -27,7 +27,7 @@ const AirlinesPartnerMarqueeImageCard = ({
                             className="object-contain"
                             priority={index < 5} // Prioritize loading the first few images
                         />
-                        <h3 className="text-sm md:text-base font-semibold whitespace-nowrap">{logo.name}</h3>
+                        <h3 className="text-sm md:text-base font-medium whitespace-nowrap">{logo.name}</h3>
                     </div>
                 ))}
             </Marquee>

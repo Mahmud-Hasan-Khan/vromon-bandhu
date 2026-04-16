@@ -4,7 +4,7 @@ const SectionTitle = ({ heading, subheading }: { heading: string; subheading: st
             {/* Heading with lines */}
             <div className="flex items-center justify-center gap-4 w-[98%] mx-auto">
                 <hr className="grow border-gray-200" />
-                <h1 className="text-xl md:text-4xl font-heading font-semibold text-gray-800 whitespace-nowrap">
+                <h1 className="text-xl md:text-3xl font-heading font-semibold text-gray-800 whitespace-nowrap">
                     {heading}
                 </h1>
                 <hr className="grow border-gray-200" />

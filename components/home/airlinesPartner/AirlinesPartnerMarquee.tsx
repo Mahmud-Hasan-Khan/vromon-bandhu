@@ -1,4 +1,4 @@
-import SectionTitle from "@/components/sectionTitle/SectionTitle";
+import SectionTitle from "@/components/ui/sectionTitle/SectionTitle";
 import { IAirlineLight } from "@/types/airlines.types";
 import AirlinesPartnerMarqueeImageCard from "./AirlinesPartnerMarqueeImageCard";
 

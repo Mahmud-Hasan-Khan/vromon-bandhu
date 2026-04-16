@@ -1,17 +1,3 @@
-
-// const SectionTitle = ({ heading, subheading }: { heading: string; subheading: string }) => {
-//     return (
-//         <>
-//             <div className='sm:w-4/6 md:w-1/2 mx-auto'>
-//                 <h1 className='text-center md:text-2xl font-semibold text-gray-800'>{heading}</h1>
-//             </div>
-//             <h4 className="md:w-[45%] mx-auto md:pb-2 mb-1 md:mb-0 font-normal text-gray-700 lg:font-medium text-center">{subheading}</h4>
-//         </>
-//     )
-// }
-
-// export default SectionTitle
-
 const SectionTitle = ({ heading, subheading }: { heading: string; subheading: string }) => {
     return (
         <div className="text-center">

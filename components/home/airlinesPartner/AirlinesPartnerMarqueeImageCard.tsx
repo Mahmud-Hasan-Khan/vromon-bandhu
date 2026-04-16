@@ -12,7 +12,7 @@ const AirlinesPartnerMarqueeImageCard = ({
     }
 
     return (
-        <div className="py-2 sm:py-3 md:py-4">
+        <div className="pt-2 sm:pt-3 md:pt-4 pb-1 sm:pb-2 md:pb-3">
             <Marquee pauseOnHover speed={60} gradient={false}>
                 {MarqueeData.map((logo, index) => (
                     <div
@@ -22,9 +22,8 @@ const AirlinesPartnerMarqueeImageCard = ({
                         <Image
                             src={logo.logo}
                             alt={logo.name}
-                            width={30}
-                            height={30}
-                            style={{ width: "auto", height: "auto" }}
+                            width={40}
+                            height={40}
                             className="object-contain"
                             priority={index < 5} // Prioritize loading the first few images
                         />

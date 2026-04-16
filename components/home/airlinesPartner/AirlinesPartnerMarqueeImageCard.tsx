@@ -17,7 +17,7 @@ const AirlinesPartnerMarqueeImageCard = ({
                 {MarqueeData.map((logo, index) => (
                     <div
                         key={logo.id}
-                        className="flex items-center gap-3 mx-8"
+                        className="flex items-center gap-2 mx-4 sm:mx-5 md:mx-6"
                     >
                         <Image
                             src={logo.logo}

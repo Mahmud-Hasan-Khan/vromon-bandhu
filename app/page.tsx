@@ -1,5 +1,6 @@
 import AirlinesPartnerMarquee from "@/components/home/airlinesPartner/AirlinesPartnerMarquee";
 import OfferNoticeSlider from "@/components/home/offerSection/offerSlider";
+import VisaCarousel from "@/components/home/visaCarousel/VisaCarousel";
 import { getLightweightAirlines } from "@/lib/airlines.service";
 import { getLightweightOffers } from "@/lib/offer.service";
 export const dynamic = "force-dynamic";
@@ -21,6 +22,7 @@ export default async function Home() {
         <div className="bg-white rounded-md shadow-lg my-10">
           <AirlinesPartnerMarquee MarqueeData={airlineMarquee} />
         </div>
+        <VisaCarousel />
     </div>
   );
 }

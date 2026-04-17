@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { SpeedInsights } from '@vercel/speed-insights/next';
+
 import {
   Poppins,
   Inter,
@@ -49,6 +51,7 @@ export default function RootLayout({
       <body className="bg-slate-200 font-sans">
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
           {children}
+          <SpeedInsights />
         </main>
       </body>
     </html>

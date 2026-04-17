@@ -1,3 +1,4 @@
+import ContactUs from "@/components/ui/ContactUs/ContactUs";
 import { getOfferById } from "@/lib/offer.service";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,7 +15,7 @@ type Props = {
 export default async function OfferDetail({ params }: Props) {
     const resolvedParams = await params;
     const id = resolvedParams.id;
-    
+
     if (!id) return notFound();
 
     const card = await getOfferById(id);
@@ -51,19 +52,17 @@ export default async function OfferDetail({ params }: Props) {
                         ))}
                     </div>
                     <div className='pt-2'>
-                        <p>যদি কোনো প্রশ্ন থাকে বা সাহায্য প্রয়োজন হয়, দয়া করে আমাদের ইমেইল করুন  <a href="mailto:wakia.info@gmail.com"
-                            className="text-blue-600 underline hover:no-underline transition duration-300 ease-in-out">
-                            wakia.info@gmail.com
-                        </a> -তে অথবা যোগাযোগ করুন <a href="tel:+8801303118811"
-                            className="text-blue-600 underline hover:no-underline transition duration-300 ease-in-out">
-                                +8801303118811
-                            </a> হটলাইনে।</p>
-                        <p className='pt-1'>ধন্যবাদ,</p>
-                        <p>টিম ওয়াকিয়া ট্রাভেলস</p>
+                        <p className="text-gray-700 text-base">
+                            যদি কোনো প্রশ্ন থাকে বা সাহায্য প্রয়োজন হয়, আমাদের সাথে যোগাযোগ করুন:
+                        </p>
+                        <div className="py-2">
+                            <ContactUs />
+                        </div>
                     </div>
                 </div>
+                <p className='pt-1'>ধন্যবাদ,</p>
+                <p>টিম ওয়াকিয়া ট্রাভেলস</p>
             </div>
-
         </div>
     )
 }

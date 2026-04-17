@@ -1,10 +1,17 @@
 import ContactUs from "@/components/ui/ContactUs/ContactUs";
-import { getOfferById } from "@/lib/offer.service";
+import { getOfferById, getLightweightOffers } from "@/lib/offer.service";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // revalidate every hour
+
+export async function generateStaticParams() {
+    const offers = await getLightweightOffers();
+    return offers.map((offer) => ({
+        id: offer.id,
+    }));
+}
 
 type Props = {
     params: Promise<{

@@ -2,6 +2,8 @@ import { IOffer, IOfferFull, IOfferLight } from "@/types/offer.types";
 import { connectDB } from "./connectDB";
 import OfferModel from "@/models/offer.model";
 import mongoose from "mongoose";
+import { cache } from "react";
+import { unstable_cache } from "next/cache";
 
 // 🔹 Full mapper
 const mapToOfferFull = (offer: IOffer): IOfferFull => ({
@@ -22,28 +24,36 @@ const mapToOfferLight = (offer: IOffer): IOfferLight => ({
 
 
 // ✅ 1. Get All Offers (FULL DATA)
-export async function getOffers(): Promise<IOfferFull[]> {
-  await connectDB();
-
-  const offers = await OfferModel.find()
-    .sort({ createdAt: -1 })
-    .lean();
-
-  return offers.map(mapToOfferFull);
-}
+export const getOffers = cache(async (): Promise<IOfferFull[]> => {
+  return unstable_cache(
+    async () => {
+      await connectDB();
+      const offers = await OfferModel.find()
+        .sort({ createdAt: -1 })
+        .lean();
+      return offers.map(mapToOfferFull);
+    },
+    ["offers-list"],
+    { revalidate: 3600, tags: ["offers"] }
+  )();
+});
 
 
 // ✅ 2. Get lightweight offers (for slider)
-export async function getLightweightOffers(): Promise<IOfferLight[]> {
-  await connectDB();
-
-  const offers = await OfferModel.find()
-    .select("title image")
-    .sort({ createdAt: -1 })
-    .lean();
-
-  return offers.map(mapToOfferLight);
-}
+export const getLightweightOffers = cache(async (): Promise<IOfferLight[]> => {
+  return unstable_cache(
+    async () => {
+      await connectDB();
+      const offers = await OfferModel.find()
+        .select("title image")
+        .sort({ createdAt: -1 })
+        .lean();
+      return offers.map(mapToOfferLight);
+    },
+    ["offers-light-list"],
+    { revalidate: 3600, tags: ["offers"] }
+  )();
+});
 
 
 // ✅ 3. Create Offer
@@ -59,18 +69,19 @@ export async function createOffer(
 
 
 // ✅ 4. Get Offer By ID
-export async function getOfferById(
-  id: string
-): Promise<IOfferFull | null> {
-  await connectDB();
-
-  if (!mongoose.Types.ObjectId.isValid(id)) return null;
-
-  const offer = await OfferModel.findById(id).lean();
-  if (!offer) return null;
-
-  return mapToOfferFull(offer);
-}
+export const getOfferById = cache(async (id: string): Promise<IOfferFull | null> => {
+  return unstable_cache(
+    async () => {
+      await connectDB();
+      if (!mongoose.Types.ObjectId.isValid(id)) return null;
+      const offer = await OfferModel.findById(id).lean();
+      if (!offer) return null;
+      return mapToOfferFull(offer);
+    },
+    [`offer-detail-${id}`],
+    { revalidate: 3600, tags: ["offers"] }
+  )();
+});
 
 
 // ✅ 5. Delete Offer

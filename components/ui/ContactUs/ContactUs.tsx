@@ -161,7 +161,7 @@ const ContactUs = () => {
             brandColor: "text-[#25D366]", borderColor: "border-[#25D366]/20", hoverBg: "hover:bg-[#25D366]/5"
         },
         {
-            id: 4, name: "Google Maps", icon: <GoogleMapsIcon />, href: "https://maps.google.com",
+            id: 4, name: "Address", icon: <GoogleMapsIcon />, href: "https://maps.google.com",
             brandColor: "text-[#4285F4]", borderColor: "border-[#4285F4]/20", hoverBg: "hover:bg-[#4285F4]/5"
         },
         {
@@ -180,7 +180,7 @@ const ContactUs = () => {
 
     return (
         <div className="w-full max-w-4xl mx-auto">
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-wrap lg:justify-start gap-3">
+            <div className="grid grid-cols-3 sm:grid-cols-3 lg:flex lg:flex-wrap lg:justify-start gap-3">
                 {contactLinks.map((link) => (
                     <Link
                         key={link.id}

@@ -2,6 +2,8 @@ import { connectDB } from "./connectDB";
 import mongoose from "mongoose";
 import { IAirline, IAirlineFull, IAirlineLight } from "@/types/airlines.types";
 import AirlinesModel from "@/models/airlines.model";
+import { cache } from "react";
+import { unstable_cache } from "next/cache";
 
 // 🔹 Full mapper
 const mapToAirlineFull = (airline: IAirline): IAirlineFull => ({
@@ -23,28 +25,36 @@ const mapToAirlineLight = (airline: IAirline): IAirlineLight => ({
 
 
 // ✅ 1. Get All Airlines (FULL DATA)
-export async function getAirlines(): Promise<IAirlineFull[]> {
-  await connectDB();
-
-  const airlines = await AirlinesModel.find()
-    .sort({ createdAt: -1 })
-    .lean();
-
-  return airlines.map(mapToAirlineFull);
-}
+export const getAirlines = cache(async (): Promise<IAirlineFull[]> => {
+  return unstable_cache(
+    async () => {
+      await connectDB();
+      const airlines = await AirlinesModel.find()
+        .sort({ createdAt: -1 })
+        .lean();
+      return airlines.map(mapToAirlineFull);
+    },
+    ["airlines-list"],
+    { revalidate: 604800, tags: ["airlines"] }
+  )();
+});
 
 
 // ✅ 2. Get lightweight offers (for slider)
-export async function getLightweightAirlines(): Promise<IAirlineLight[]> {
-  await connectDB();
-
-  const offers = await AirlinesModel.find()
-    .select("name logo")
-    .sort({ createdAt: -1 })
-    .lean();
-
-  return offers.map(mapToAirlineLight);
-}
+export const getLightweightAirlines = cache(async (): Promise<IAirlineLight[]> => {
+  return unstable_cache(
+    async () => {
+      await connectDB();
+      const airlines = await AirlinesModel.find()
+        .select("name logo")
+        .sort({ createdAt: -1 })
+        .lean();
+      return airlines.map(mapToAirlineLight);
+    },
+    ["airlines-light-list"],
+    { revalidate: 604800, tags: ["airlines"] }
+  )();
+});
 
 
 // ✅ 3. Create Airline

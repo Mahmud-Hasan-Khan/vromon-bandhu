@@ -125,9 +125,11 @@ export default function EmblaCoverflow3() {
             <div
               key={item.id}
               className="flex-[0_0_33.3333%] min-w-0 px-4"
-              ref={(el) => (slidesRef.current[index] = el)}
+              ref={(el) => {
+                slidesRef.current[index] = el;
+              }}
             >
-              <div className="relative h-[420px] rounded-2xl overflow-hidden shadow-xl">
+              <div className="relative h-105 rounded-2xl overflow-hidden shadow-xl">
                 <Image
                   src={item.image}
                   alt={item.title}
@@ -139,7 +141,7 @@ export default function EmblaCoverflow3() {
                 <div className="absolute inset-0 bg-black/20" />
 
                 {/* content */}
-                <div className="absolute bottom-0 w-full p-5 bg-gradient-to-t from-black/80 to-transparent text-white">
+                <div className="absolute bottom-0 w-full p-5 bg-linear-to-t from-black/80 to-transparent text-white">
                   <h3 className="text-xl font-semibold">
                     {item.title}
                   </h3>

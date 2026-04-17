@@ -189,7 +189,7 @@ const ContactUs = () => {
                         rel={link.href.startsWith('http') ? "noopener noreferrer" : undefined}
                         className={`flex items-center justify-center gap-2 px-3 py-1 bg-transparent border ${link.borderColor} ${link.brandColor} ${link.hoverBg} rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm md:text-base font-semibold w-full lg:w-auto shadow-sm`}
                     >
-                        <span className="flex-shrink-0 text-lg">{link.icon}</span>
+                        <span className="shrink-0 text-lg">{link.icon}</span>
                         <span>{link.name}</span>
                     </Link>
                 ))}

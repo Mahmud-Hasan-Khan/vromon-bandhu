@@ -85,7 +85,7 @@ export default function Home() {
 
   return (
     <div className="bg-slate-200 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-bold text-center pt-10">
           Welcome to My Next.js App
         </h1>

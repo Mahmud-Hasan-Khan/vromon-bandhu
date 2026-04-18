@@ -34,14 +34,14 @@ const OfferCard = (
             onMouseLeave={() => setActive(false)} // মাউস সরিয়ে নিলে রিসেট হবে
             className="relative cursor-pointer bg-white rounded-lg shadow-md shadow-black/40 overflow-hidden hover:scale-[1.05] transition-transform group border-t-2 border-t-blue-500"
         >
-            {/* Image */}
-            <div className="relative w-full h-44 rounded-lg overflow-hidden bg-gray-200">
+            {/* Image: box is full width × h-44 (11rem). object-contain = no crop; use ~16:9 art (e.g. 1200×675) for minimal letterboxing. */}
+            <div className="relative w-full h-44 rounded-lg overflow-hidden bg-gray-100">
                 <Image
                     src={card.image}
                     alt={card.title}
                     priority={isPriority}
                     fill
-                    className="object-fll transition-transform duration-500 group-hover:scale-105"
+                    className="object-fill object-center transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
             </div>

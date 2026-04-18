@@ -1,27 +1,16 @@
 import { Suspense } from "react";
+import dynamic from "next/dynamic";
 import { getLightweightAirlines } from "@/lib/airlines.service";
 import { getLightweightOffers } from "@/lib/offer.service";
 
 import AirlinesPartnerMarquee from "@/components/home/airlinesPartner/AirlinesPartnerMarquee";
 import OfferNoticeSlider from "@/components/home/offerSection/offerSlider";
-import VisaCarousel from "@/components/home/visaCarousel/VisaCarousel";
+import { VisaCarouselSkeleton } from "@/components/home/visaCarousel/VisaCarouselSkeleton";
+import { SectionSkeleton } from "@/components/ui/skeleton/SectionSkeleton";
 import { IOfferLight } from "@/types/offer.types";
 import { IAirlineLight } from "@/types/airlines.types";
 
 export const revalidate = 3600;
-
-function SectionSkeleton() {
-  return (
-    <div className="bg-white rounded-md shadow-lg my-4 p-6 space-y-4">
-      <div className="h-6 w-1/3 bg-gray-200 animate-pulse rounded" />
-      <div className="flex gap-4">
-        <div className="h-40 w-1/3 bg-gray-200 animate-pulse rounded" />
-        <div className="h-40 w-1/3 bg-gray-200 animate-pulse rounded" />
-        <div className="h-40 w-1/3 bg-gray-200 animate-pulse rounded" />
-      </div>
-    </div>
-  );
-}
 
 // These async components handle data fetching and allow streaming
 async function OffersSection({ promise }: { promise: Promise<IOfferLight[]> }) {
@@ -78,6 +67,14 @@ async function AirlinesSection({ promise }: { promise: Promise<IAirlineLight[]> 
   }
 }
 
+const VisaCarousel = dynamic(
+  () => import("@/components/home/visaCarousel/VisaCarousel"),
+  {
+    loading: () => <VisaCarouselSkeleton />,
+    ssr: true,
+  }
+);
+
 export default function Home() {
   // 🔥 Start fetching immediately in parallel (Render-as-you-Fetch)
   const offersPromise = getLightweightOffers();
@@ -97,22 +94,12 @@ export default function Home() {
           <OffersSection promise={offersPromise} />
         </Suspense>
 
-        <Suspense fallback={<SectionSkeleton />}>
+        <Suspense fallback={<SectionSkeleton className="my-10" />}>
           <AirlinesSection promise={airlinesPromise} />
         </Suspense>
 
-        {/* 
-            VisaCarousel is already a Client Component. 
-            By importing it normally, we get better SEO/LCP.
-            If it's heavy, we can wrap it in its own Suspense.
-        */}
-        <Suspense fallback=
-          {<div className="bg-white rounded-md shadow-lg my-10 p-6">
-            <div className="h-6 w-1/4 bg-gray-200 animate-pulse rounded mb-4" />
-            <div className="h-72 bg-gray-100 animate-pulse rounded" />
-          </div>}>
-          <VisaCarousel />
-        </Suspense>
+        {/* Dynamic import splits Embla + carousel UI into a separate JS chunk for faster initial parse. */}
+        <VisaCarousel />
       </div>
     </div>
   );

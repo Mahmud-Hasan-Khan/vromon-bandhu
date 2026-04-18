@@ -25,7 +25,8 @@ const AirlinesPartnerMarqueeImageCard = ({
                             width={35}
                             height={35}
                             sizes="35px"
-                            className="object-contain"
+                            className="shrink-0 object-contain"
+                            style={{ width: 35, height: 35 }}
                             priority={index < 5} // Prioritize loading the first few images
                         />
                         <h3 className="text-sm md:text-base font-medium whitespace-nowrap">{logo.name}</h3>

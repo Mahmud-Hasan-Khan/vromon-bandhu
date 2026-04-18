@@ -39,13 +39,13 @@ export default async function OfferDetail({ params }: Props) {
             </div>
             <div className="max-w-3xl font-bangla mx-auto p-6 bg-white text-gray-600">
                 <div className='max-w-xl'>
-                    <div className="relative w-full h-40 md:h-56 rounded-lg overflow-hidden">
+                    <div className="relative w-full h-40 md:h-56 rounded-lg overflow-hidden bg-gray-100">
                         <Image
                             src={card.image}
                             alt={card.title || 'Card Image'}
                             fill
-                            className="object-fill"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-contain object-center"
+                            sizes="(max-width: 768px) 100vw, 672px"
                             priority
                         />
                     </div>

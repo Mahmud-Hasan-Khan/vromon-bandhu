@@ -35,7 +35,7 @@ const OfferCard = (
             className="relative cursor-pointer bg-white rounded-lg shadow-md shadow-black/40 overflow-hidden hover:scale-[1.05] transition-transform group border-t-2 border-t-blue-500"
         >
             {/* Image: box is full width × h-44 (11rem). object-contain = no crop; use ~16:9 art (e.g. 1200×675) for minimal letterboxing. */}
-            <div className="relative w-full h-44 rounded-lg overflow-hidden bg-gray-100">
+            <div className="relative w-full h-40 rounded-lg overflow-hidden bg-gray-100">
                 <Image
                     src={card.image}
                     alt={card.title}

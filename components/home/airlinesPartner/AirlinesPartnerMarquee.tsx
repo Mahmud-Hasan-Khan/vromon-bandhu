@@ -1,13 +1,14 @@
 import SectionTitle from "@/components/ui/sectionTitle/SectionTitle";
 import { IAirlineLight } from "@/types/airlines.types";
 import AirlinesPartnerMarqueeImageCard from "./AirlinesPartnerMarqueeImageCard";
+import { HOME_SECTION } from "@/lib/ui/homeSectionLayout";
 
 // Revalidate every week
 export const revalidate = 604800;
 
 const AirlinesPartnerMarquee = ({ MarqueeData }: { MarqueeData: IAirlineLight[] }) => {
     return (
-        <div className="py-3 bg-white rounded-md">
+        <div className={HOME_SECTION.panelPad}>
             <SectionTitle
                 heading="Airlines Partner"
                 subheading="Enjoy a comfortable and hassle-free journey on any destination"

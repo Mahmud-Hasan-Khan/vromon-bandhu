@@ -1,6 +1,8 @@
+import { SECTION_TITLE_BLOCK } from "@/lib/ui/homeSectionLayout";
+
 const SectionTitle = ({ heading, subheading }: { heading: string; subheading: string }) => {
     return (
-        <div className="text-center">
+        <div className={`text-center ${SECTION_TITLE_BLOCK}`}>
             {/* Heading with lines */}
             <div className="flex items-center justify-center gap-4 w-[98%] mx-auto">
                 <hr className="grow border-gray-200" />

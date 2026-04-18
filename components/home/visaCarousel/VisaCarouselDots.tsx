@@ -1,5 +1,7 @@
 "use client";
 
+import { HOME_SECTION } from "@/lib/ui/homeSectionLayout";
+
 type Props = {
   scrollSnaps: number[];
   selectedIndex: number;
@@ -17,7 +19,7 @@ export function VisaCarouselDots({
 
   return (
     <div
-      className="mt-3 flex justify-center gap-2 px-4 pb-[max(0.5rem,env(safe-area-inset-bottom))] sm:mt-4"
+      className={`flex justify-center gap-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] ${HOME_SECTION.dotsTop}`}
       aria-label="Choose a destination"
     >
       {scrollSnaps.map((_, index) => (

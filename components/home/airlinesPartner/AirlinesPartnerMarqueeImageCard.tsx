@@ -12,7 +12,7 @@ const AirlinesPartnerMarqueeImageCard = ({
     }
 
     return (
-        <div className="pt-2 sm:pt-3 md:pt-4 pb-1 sm:pb-2 md:pb-3">
+        <div className="pb-1 sm:pb-2 md:pb-3">
             <Marquee pauseOnHover speed={60} gradient={false}>
                 {MarqueeData.map((logo, index) => (
                     <div

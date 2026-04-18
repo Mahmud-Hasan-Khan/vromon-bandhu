@@ -9,8 +9,12 @@ import { VisaCarouselSkeleton } from "@/components/home/visaCarousel/VisaCarouse
 import { SectionSkeleton } from "@/components/ui/skeleton/SectionSkeleton";
 import { IOfferLight } from "@/types/offer.types";
 import { IAirlineLight } from "@/types/airlines.types";
+import { HOME_SECTION } from "@/lib/ui/homeSectionLayout";
 
 export const revalidate = 3600;
+
+const sectionShell = `${HOME_SECTION.panel} ${HOME_SECTION.stack}`;
+const sectionEmpty = `${sectionShell} ${HOME_SECTION.panelPad} text-center`;
 
 // These async components handle data fetching and allow streaming
 async function OffersSection({ promise }: { promise: Promise<IOfferLight[]> }) {
@@ -19,21 +23,21 @@ async function OffersSection({ promise }: { promise: Promise<IOfferLight[]> }) {
 
     if (!offers?.length) {
       return (
-        <div className="bg-white rounded-md shadow-lg my-4 p-6 text-center text-gray-500">
+        <div className={`${sectionEmpty} text-gray-500`}>
           No offers available at the moment.
         </div>
       );
     }
 
     return (
-      <div className="bg-white rounded-md shadow-lg my-4">
+      <div className={sectionShell}>
         <OfferNoticeSlider cards={offers} />
       </div>
     );
 
   } catch (error) {
     return (
-      <div className="bg-white rounded-md shadow-lg my-4 p-6 text-center text-red-500">
+      <div className={`${sectionEmpty} text-red-500`}>
         Failed to load offers. Please try again later.
       </div>
     );
@@ -46,21 +50,21 @@ async function AirlinesSection({ promise }: { promise: Promise<IAirlineLight[]> 
 
     if (!airlineMarquee?.length) {
       return (
-        <div className="bg-white rounded-md shadow-lg my-10 p-6 text-center text-gray-500">
+        <div className={`${sectionEmpty} text-gray-500`}>
           No airline partners available at the moment.
         </div>
       );
     }
 
     return (
-      <div className="bg-white rounded-md shadow-lg my-10">
+      <div className={sectionShell}>
         <AirlinesPartnerMarquee MarqueeData={airlineMarquee} />
       </div>
     );
 
   } catch (error) {
     return (
-      <div className="bg-white rounded-md shadow-lg my-10 p-6 text-center text-red-500">
+      <div className={`${sectionEmpty} text-red-500`}>
         Failed to load airline partners.
       </div>
     );
@@ -82,7 +86,7 @@ export default function Home() {
 
   return (
     <div className="bg-slate-200 min-h-screen">
-      <div className="max-w-7xl mx-auto">
+      <div className={"max-w-7xl mx-auto"}>
         <h1 className="text-4xl font-bold text-center pt-10">
           Welcome to My Next.js App
         </h1>
@@ -94,12 +98,14 @@ export default function Home() {
           <OffersSection promise={offersPromise} />
         </Suspense>
 
-        <Suspense fallback={<SectionSkeleton className="my-10" />}>
+        <Suspense fallback={<SectionSkeleton />}>
           <AirlinesSection promise={airlinesPromise} />
         </Suspense>
 
-        {/* Dynamic import splits Embla + carousel UI into a separate JS chunk for faster initial parse. */}
-        <VisaCarousel />
+        <div className={sectionShell}>
+          {/* Dynamic import splits Embla + carousel UI into a separate JS chunk for faster initial parse. */}
+          <VisaCarousel />
+        </div>
       </div>
     </div>
   );

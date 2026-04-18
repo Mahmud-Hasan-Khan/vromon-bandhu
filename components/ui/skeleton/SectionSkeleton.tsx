@@ -1,14 +1,15 @@
 import { Skeleton } from "./Skeleton";
+import { HOME_SECTION } from "@/lib/ui/homeSectionLayout";
 
 type Props = {
-  /** Vertical spacing to match the section it replaces (e.g. offers vs airlines). */
+  /** Override vertical spacing between sections (default matches `HOME_SECTION.stack`). */
   className?: string;
 };
 
-export function SectionSkeleton({ className = "my-4" }: Props) {
+export function SectionSkeleton({ className = HOME_SECTION.stack }: Props) {
   return (
     <div
-      className={`space-y-4 rounded-md bg-white p-6 shadow-lg ${className}`}
+      className={`${HOME_SECTION.panel} ${className} ${HOME_SECTION.panelPad} space-y-4`}
     >
       <Skeleton className="h-6 w-1/3 max-w-xs mx-auto" />
       <div className="flex gap-4">

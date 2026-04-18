@@ -7,6 +7,7 @@ import Autoplay from "embla-carousel-autoplay";
 import OfferCard from "./offerCard";
 import { IOfferLight } from "@/types/offer.types";
 import SectionTitle from "@/components/ui/sectionTitle/SectionTitle";
+import { HOME_SECTION } from "@/lib/ui/homeSectionLayout";
 
 const OfferNoticeSlider = ({ cards }: { cards: IOfferLight[] }) => {
     const router = useRouter();
@@ -48,11 +49,13 @@ const OfferNoticeSlider = ({ cards }: { cards: IOfferLight[] }) => {
     );
 
     if (!cards?.length) {
-        return <p className="text-center py-10">No offers available</p>;
+        return (
+            <p className={`text-center ${HOME_SECTION.panelPad}`}>No offers available</p>
+        );
     }
 
     return (
-        <div className="relative w-full rounded-md py-4">
+        <div className={`relative w-full ${HOME_SECTION.panelPad}`}>
             <SectionTitle
                 heading="Exclusive Offers"
                 subheading="Check out our latest deals and discounts"
@@ -63,7 +66,7 @@ const OfferNoticeSlider = ({ cards }: { cards: IOfferLight[] }) => {
                     {cards.map((card, index) => (
                         <div
                             key={card.id}
-                            className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] p-2"
+                            className={`flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] ${HOME_SECTION.slideCell}`}
                         >
                             <OfferCard
                                 card={card}
@@ -77,7 +80,7 @@ const OfferNoticeSlider = ({ cards }: { cards: IOfferLight[] }) => {
 
             {/* Dots based on scroll snaps */}
             {scrollSnaps.length > 1 && (
-                <div className="flex justify-center gap-2 mt-3">
+                <div className={`flex justify-center gap-2 ${HOME_SECTION.dotsTop}`}>
                     {scrollSnaps.map((_, index) => (
                         <button
                             key={index}
